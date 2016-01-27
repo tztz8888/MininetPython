@@ -47,15 +47,25 @@ def testTopo():
     #for i in range(0,10):
     #    net.pingAll()
 
-    print "test TCP bandwidth"
+    # print "test TCP bandwidth"
+    # for i in range(0,8):
+    #     for j in range(0,8):
+    #         if i<j:
+    #             src, dst = net.hosts[i], net.hosts[j]
+    #             src.cmd( 'telnet', dst.IP(), '5001' )
+    #             print "testing", src.name, "<->", dst.name,
+    #             bandwidth = net.iperf( [ src, dst ], seconds=10 )
+    #             print bandwidth
+    #             flush()
+
+    print "test UDP bandwidth at bandwidth 15 Mbps"
     for i in range(0,8):
         for j in range(0,8):
             if i<j:
                 src, dst = net.hosts[i], net.hosts[j]
                 src.cmd( 'telnet', dst.IP(), '5001' )
                 print "testing", src.name, "<->", dst.name,
-                bandwidth = net.iperf( [ src, dst ], seconds=10 )
-                print bandwidth
+                print net.iperf( [ src, dst ], l4Type = 'UDP', udpBw = '15M' )
                 flush()
 
     net.stop()
