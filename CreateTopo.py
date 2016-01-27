@@ -48,12 +48,13 @@ def testTopo():
     print "test TCP bandwidth"
     for i in range(0,8):
         for j in range(0,8):
-            src, dst = net.hosts[i], net.hosts[j]
-            src.cmd( 'telnet', dst.IP(), '5001' )
-            print "testing", src.name, "<->", dst.name,
-            bandwidth = net.iperf( [ src, dst ], seconds=10 )
-            print bandwidth
-            flush()
+            if i~=j
+                src, dst = net.hosts[i], net.hosts[j]
+                src.cmd( 'telnet', dst.IP(), '5001' )
+                print "testing", src.name, "<->", dst.name,
+                bandwidth = net.iperf( [ src, dst ], seconds=10 )
+                print bandwidth
+                flush()
 
     net.stop()
 
