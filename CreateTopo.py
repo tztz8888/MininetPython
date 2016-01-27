@@ -36,7 +36,7 @@ class CustomTopo(Topo):
 def testTopo():
     "Create network and run simple performance tests"
     topo= CustomTopo()
-    net=Mininet(topo)
+    net=Mininet(topo=topo,host=CPULimitedHost, link=TCLink)
     net.start()
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
