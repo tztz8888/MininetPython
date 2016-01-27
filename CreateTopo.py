@@ -68,7 +68,7 @@ def testTopo():
             if i!=j:
                 print "Done running iperf on server, starting client now"
                 ipdst= dst.IP()
-                result1=dst.cmd('iperf -c 10.0.0.1 -u -b 15M')
+                result1=dst.cmd('iperf -c %s -u -b 15M' %ipdst)
                 print result1
         print "Shutting down the iperf server\n"
         src.cmd('kill -9 $pid')
