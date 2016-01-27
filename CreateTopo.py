@@ -66,9 +66,9 @@ def testTopo():
         for j in range(0,8):
             dst = net.hosts[j]
             if i!=j:
-                print "Done running iperf on server, starting client now"
-                ipdst= dst.IP()
-                result1=dst.cmd('iperf -c %s -u -b 15M' %ipdst)
+                print "client",dst.name,"-> server", src.name 
+                ipsrc= src.IP()
+                result1=dst.cmd('iperf -c %s -u -b 15M' %ipsrc)
                 print result1
         print "Shutting down the iperf server\n"
         src.cmd('kill -9 $pid')
