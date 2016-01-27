@@ -4,14 +4,14 @@ from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
-#import mininet
+from mininet.cli import CLI
 
 class SingleSwitchTopo(Topo):
     "Single Switch Connected to n nodes"
     def build(self, n=2):
         switch = self.addSwitch('s1')
         for h in range(n):
-            host=self.addHost('h%s' %(h+1), cpu=0.5/n)
+            host=self.addHost('h%s' %(h+1))
             self.addLink(host,switch)
 
 def simpleTest():
