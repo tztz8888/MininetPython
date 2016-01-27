@@ -50,7 +50,7 @@ def testTopo():
     # print "test TCP bandwidth"
     # for i in range(0,8):
     #     for j in range(0,8):
-    #         if i<j:
+    #         if i!=j:
     #             src, dst = net.hosts[i], net.hosts[j]
     #             src.cmd( 'telnet', dst.IP(), '5001' )
     #             print "testing", src.name, "<->", dst.name,
@@ -58,15 +58,20 @@ def testTopo():
     #             print bandwidth
     #             flush()
 
-    print "test UDP bandwidth at bandwidth 15 Mbps"
+    print "test UDP loss rate at bandwidth 15 Mbps"
     for i in range(0,8):
+        src=net.hosts[i]
+        result=src.cmd('iperf -u -s &')
+        pid = src.cmd('echo $!')
         for j in range(0,8):
-            if i<j:
-                src, dst = net.hosts[i], net.hosts[j]
-                src.cmd( 'telnet', dst.IP(), '5001' )
-                print "testing", src.name, "<->", dst.name,
-                print net.iperf( [ src, dst ], l4Type = 'UDP', udpBw = '15M' )
-                flush()
+            dst = net.hosts[j]
+            if i!=j:
+                print "Done running iperf on server, starting client now"
+                ipdst= dst.IP()
+                result1=dst.cmd('iperf -c $ipdst -u -b 15M')
+                print result1
+        print "Shutting down the iperf server\n"
+        src.cmd('kill -9 $pid')
 
     net.stop()
 
