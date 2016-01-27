@@ -49,7 +49,7 @@ def testTopo():
     for h in range(0,8):
         host.append( net.get('h%s' %(h+1) ) )
     for i in range(0,8):
-        for j in range(0,8)
+        for j in range(0,8):
             net.iperf(hosts = host,l4Type = 'TCP')
 
     net.stop()
