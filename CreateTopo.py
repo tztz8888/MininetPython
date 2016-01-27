@@ -49,7 +49,7 @@ def testTopo():
     for i in range(0,8):
         for j in range(0,8):
             src, dst = net.hosts[i], net.hosts[j]
-            print "Now testing bandwidth between h%s and h%s" %i, %j
+            print "Now testing bandwidth between h%s and h%s" %i%j
             result=src.cmd('iperf -u -s &')
             pid = src.cmd('echo $!')
             print result
