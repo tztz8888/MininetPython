@@ -42,9 +42,9 @@ def testTopo():
     net.start()
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
-    
+
     print "Testing connectivity"
-    Connectivity test by sending 10 ping messages between each other
+    #Connectivity test by sending 10 ping messages between each other
     for i in range(0,10):
        net.pingAll()
 
