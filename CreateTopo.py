@@ -49,17 +49,11 @@ def testTopo():
     for i in range(0,8):
         for j in range(0,8):
             src, dst = net.hosts[i], net.hosts[j]
-            print "Now testing bandwidth between h%s and h%s" %(i,j)
-            result=src.cmd('iperf -u -s &')
-            pid = src.cmd('echo $!')
-            print result
-
-            print "Done running iperf on server, starting client now"
-            result1=dst.cmd('iperf -c 10.0.0.1 -u -b 10000000')
-            print result1
-
-    print "Shutting down the iperf server"
-    h1.cmd('kill -9 $pid')
+            src.cmd( 'telnet', dst.IP(), '5001' )
+            print "testing", src.name, "<->", dst.name,
+            bandwidth = net.iperf( [ src, dst ], seconds=10 )
+            print bandwidth
+            flush()
 
     net.stop()
 
