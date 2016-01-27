@@ -42,13 +42,13 @@ def testTopo():
     dumpNodeConnections(net.hosts)
     print "Testing connectivity"
     #Connectivity test by sending 10 ping messages between each other
-    for i in range(0,10)
+    for i in range(0,10):
         net.pingAll()
 
     print "test TCP bandwidth"
-    for h in range(0,8)
+    for h in range(0,8):
         host.append( net.get('h%s' %(h+1) ) )
-    for i in range(0,8)
+    for i in range(0,8):
         for j in range(0,8)
             net.iperf(hosts = host,l4Type = 'TCP')
 
