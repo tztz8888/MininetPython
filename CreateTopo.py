@@ -7,6 +7,8 @@ from mininet.net import Mininet
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 from mininet.cli import CLI
+import sys
+flush = sys.stdout.flush
 
 class CustomTopo(Topo):
     "6 siwthes, 8 hosts"
