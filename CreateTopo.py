@@ -46,6 +46,7 @@ def testTopo():
     #    net.pingAll()
 
     print "test TCP bandwidth"
+    host=[]
     for h in range(0,8):
         host.append( net.get('h%s' %(h+1) ) )
     for i in range(0,8):
