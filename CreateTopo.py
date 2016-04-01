@@ -43,21 +43,21 @@ def testTopo():
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
 
-    # print "Testing connectivity"
-    # #Connectivity test by sending 10 ping messages between each other
-    # for i in range(0,10):
-    #    net.pingAll()
+    print "Testing connectivity"
+    #Connectivity test by sending 10 ping messages between each other
+    for i in range(0,10):
+       net.pingAll()
 
-    # print "test TCP bandwidth"
-    # for i in range(0,8):
-    #     for j in range(0,8):
-    #         if i<j:
-    #             src, dst = net.hosts[i], net.hosts[j]
-    #             src.cmd( 'telnet', dst.IP(), '5001' )
-    #             print "testing", src.name, "<->", dst.name,
-    #             bandwidth = net.iperf( [ src, dst ], seconds=10 )
-    #             print bandwidth
-    #             flush()
+    print "test TCP bandwidth"
+    for i in range(0,8):
+        for j in range(0,8):
+            if i<j:
+                src, dst = net.hosts[i], net.hosts[j]
+                src.cmd( 'telnet', dst.IP(), '5001' )
+                print "testing", src.name, "<->", dst.name,
+                bandwidth = net.iperf( [ src, dst ], seconds=10 )
+                print bandwidth
+                flush()
 
     print "test UDP loss rate at bandwidth 15 Mbps"
     for i in range(0,8):
