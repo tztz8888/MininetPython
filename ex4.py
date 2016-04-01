@@ -17,7 +17,7 @@ class SingleSwitchTopo(Topo):
                cpu=.5/n)
             # 10 Mbps, 5ms delay, 10% loss, 1000 packet queue
             self.addLink(host, switch,
-               bw=10, delay='5ms', loss=10, max_queue_size=1000, use_htb=True)
+               bw=10, delay='5ms', loss=1, max_queue_size=1000, use_htb=True)
 
 def perfTest():
     "Create network and run simple performance test"
@@ -27,8 +27,7 @@ def perfTest():
     net.start()
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
-    print "Testing network connectivity"
-    net.pingAll()
+    
     print "Testing bandwidth between h1 and h4"
     h1, h4 = net.get('h1', 'h4')
     net.iperf((h1, h4))
