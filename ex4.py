@@ -30,7 +30,7 @@ class CustomTopo(Topo):
 
 def testTopo():
     "Create network and run simple performance tests"
-    topo= CustomTopo(lossRate=5)
+    topo= CustomTopo(lossRate=1)
     net=Mininet(topo=topo,host=CPULimitedHost, link=TCLink)
     net.start()
     print "Dumping host connections"
@@ -38,15 +38,13 @@ def testTopo():
 
 
     print "test TCP bandwidth"
-    for i in range(0,2):
-        for j in range(0,2):
-            if i<j:
-                src, dst = net.hosts[i], net.hosts[j]
-                src.cmd( 'telnet', dst.IP(), '5001' )
-                print "testing", src.name, "<->", dst.name,
-                bandwidth = net.iperf( [ src, dst ], seconds=10 )
-                print bandwidth
-                flush()
+    for(i in range(0,5) ):
+            src, dst = net.hosts[0], net.hosts[1]
+            src.cmd( 'telnet', dst.IP(), '5001' )
+            print "testing", src.name, "<->", dst.name,
+            bandwidth = net.iperf( [ src, dst ], seconds=10 )
+            print (bandwidth[0]+bandwidth[1]/2)
+            flush()
 
     net.stop()
 
