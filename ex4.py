@@ -42,7 +42,7 @@ def testTopo():
             src, dst = net.hosts[0], net.hosts[1]
             src.cmd( 'telnet', dst.IP(), '5001' )
             print "testing", src.name, "<->", dst.name,
-            bandwidth = net.iperf( [ src, dst ], seconds=5 ,l4Type='UDP')
+            bandwidth = net.iperf( [ src, dst ], seconds=5 ,l4Type='TCP')
             print bandwidth
             flush()
 
