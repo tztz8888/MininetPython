@@ -20,13 +20,13 @@ class CustomTopo(Topo):
         for h in range(0,2):
             host.append( self.addHost('h%s' %(h+1) ) )
 
-        self.addLink(host[0],switch[0],bw=20, delay='5ms',loss=lossRate)
+        self.addLink(host[0],switch[0],bw=20, delay='5ms',loss=lossRate,use_htb=True)
 
-        self.addLink(switch[0],switch[1],bw=20, delay='5ms',loss=lossRate)
-        self.addLink(switch[1],switch[2],bw=20, delay='5ms',loss=lossRate)
-        self.addLink(switch[2],switch[3],bw=20, delay='5ms',loss=lossRate)
+        self.addLink(switch[0],switch[1],bw=20, delay='5ms',loss=lossRate,use_htb=True)
+        self.addLink(switch[1],switch[2],bw=20, delay='5ms',loss=lossRate,use_htb=True)
+        self.addLink(switch[2],switch[3],bw=20, delay='5ms',loss=lossRate,use_htb=True)
 
-        self.addLink(host[1],switch[3],bw=20, delay='5ms',loss=lossRate)
+        self.addLink(host[1],switch[3],bw=20, delay='5ms',loss=lossRate,use_htb=True)
 
 def testTopo():
     "Create network and run simple performance tests"
